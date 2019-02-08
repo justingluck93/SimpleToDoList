@@ -12,16 +12,19 @@ import XCTest
 class SimpleToDoListTests: XCTestCase {
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+      var mockItems = [ToDoListDataModel(taskItem: "Fish"), ToDoListDataModel(taskItem: "Human"), ToDoListDataModel(taskItem: "Dog")]
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testTableViewExists() {
+        guard let vc = UIStoryboard(name: "Main", bundle: Bundle(for: ViewController.self)).instantiateViewController(withIdentifier: "toDoList") as? ViewController else {
+            return XCTFail("No ViewController Found") }
+        
+        vc.loadViewIfNeeded()
+        XCTAssertNotNil(vc.tableView)
     }
 
     func testPerformanceExample() {
